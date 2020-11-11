@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>View Anggota</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="row justify-content-md-center" style="margin-top: 5%;">
+    <h2 style="margin-bottom: 1rem;">Detail Anggota</h2>
+</div>
+<div th:if="${error}">
+    <div class="row justify-content-md-center">
+    <p class="font-weight-bold text-center mb-1" style="color: red;" th:text="${msg}"></p>
+    </div>
+</div>
+<div th:unless="${error}">
+    <div class="row justify-content-md-center">
+    <p class="font-weight-bold text-center mb-1" style="color: #1c7430;" th:text="${msg}"></p>
+    </div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>NIA</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.nia}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Nama</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.nama}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Nama Tipe Pesawat</p>
+    </div>
+    <div class="col col-lg-2">
+        <span th:with="jk=${anggota.jenis_kelamin}">
+            <span th:if="${jk==1}">
+                <p>Laki-laki</p>
+            </span>
+            <span th:unless="${jk==1}">
+                <p>Perempuan</p>
+            </span>
+        </span>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Tanggal Lahir</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.tanggal_lahir}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Alamat</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.alamat}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>No HP</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.no_hp}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Pekerjaan</p>
+    </div>
+    <div class="col col-lg-2">
+        <p th:text="${anggota.pekerjaan}"></p>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-2" style="font-weight: bold;">
+        <p>Status</p>
+    </div>
+    <div class="col col-lg-2">
+        <span th:with="jk=${anggota.status}">
+            <span th:if="${jk==1}">
+                <p>Umum</p>
+            </span>
+            <span th:unless="${jk==1}">
+                <p>Internal</p>
+            </span>
+        </span>
+    </div>
+</div>
+<div class="row justify-content-md-center" style="margin-top: 1rem;">
+    <!--<form   th:action="@{/pesawat/}+${pesawat.id}+@{/tambah-penerbangan}" th:object="${pesawat}" method="POST">-->
+    <!--    <input value="+Tambah Penerbangan" type="submit" class="btn ml-2" style="background-color:#329ec8; color: white" />-->
+    <!--</form>-->
+    <a th:href="@{/anggota/update/}+${anggota.nia}" class="btn ml-2" style="background-color:#329ec8; color: white" >Update </a>
+</div>
+</div>
+</body>
+</html>

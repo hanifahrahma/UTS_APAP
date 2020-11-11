@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Tambah Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="row justify-content-md-center" style="margin-top: 5%;">
+    <h2 >Form Tambah Anggota</h2>
+</div>
+
+<form  class="form-horizontal" th:action="@{/anggota/add}" th:object="${anggota}" method="POST">
+    <div class="form-group">
+        <label class="control-label col-sm-2" >NIA* :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{nia}"  type="text" maxlength="16"required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Nama* :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{nama}"  type="text" maxlength="50"required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Jenis Kelamin* :</label>
+        <div class="col-sm-10">
+            <select class="form-control" th:field="*{jenis_kelamin}">
+                <option value="1">Laki - Laki</option>
+                <option value="2">Perempuan</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Tanggal Lahir* :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{tanggal_lahir}" type="date" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Alamat :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{alamat}" type="text" maxlength="100">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >No HP* :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{no_hp}"  type="text" maxlength="20" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Pekerjaan :</label>
+        <div class="col-sm-10">
+            <input class="form-control" th:field="*{pekerjaan}"  type="text" maxlength="50">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" >Status* :</label>
+        <div class="col-sm-10">
+            <select class="form-control" th:field="*{status}">
+                <option value="1">Umum</option>
+                <option value="2">Internal</option>
+            </select>
+        </div>
+    </div>
+    <p> *bertanda wajib diisi</p>
+    <input name="simpan" value="Simpan" type="submit" class="btn btn-sm btn-success"/>
+
+</form>
+
+</body>
+</html>

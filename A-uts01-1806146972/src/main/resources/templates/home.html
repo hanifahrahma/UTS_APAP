@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: style" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<table class="table" style="margin-top: 1rem">
+    <thead>
+    <tr style="background-color:#329ec8">
+        <th scope="col" style="color:white">No</th>
+        <th scope="col" style="color:white">NIA</th>
+        <th scope="col" style="color:white">Nama</th>
+        <th scope="col" style="color:white">Jenis Kelamin</th>
+        <th scope="col" style="color:white">Tanggal Lahir</th>
+        <th scope="col" style="color:white">Status</th>
+<!--        <th scope="col" style="color:white"></th>-->
+<!--        <th scope="col" style="color:white"></th>-->
+    </tr>
+    <tbody>
+    <tr th:each="p, iterationStatus: ${anggotalist}" >
+        <td th:text="${iterationStatus.count}"></td>
+        <td><a th:href="@{/anggota/}+${p.nia}" th:text="${p.nia}"></a></td>
+        <td th:text="${p.nama}"></td>
+        <span th:with="jk=${p.jenis_kelamin}">
+            <span th:if="${jk == 1}">
+                 <td>Laki - Laki</td>
+            </span>
+            <span th:unless="${jk == 1}">
+                <td>Perempuan</td>
+            </span>
+        </span>
+        <td th:text="${#dates.format(p.tanggal_lahir, 'dd-MM-yyyy')}"></td>
+        <span th:with="s=${p.status}">
+            <span th:if="${s == 1}">
+                 <td>Umum</td>
+            </span>
+            <span th:unless="${s == 1}">
+                <td>Internal</td>
+            </span>
+        </span>
+
+<!--        <td><a th:href="@{/penerbangan/}+${p.id}" class="btn btn-primary">Lihat</a></td>-->
+<!--        <td><a th:href="@{/penerbangan/ubah/}+${p.id}" class="btn btn-warning">Ubah</a></td>-->
+<!--        <td><a th:href="@{/penerbangan/hapus/}+${p.id}" class="btn btn-danger">Hapus</a></td>-->
+        <!--                    <a th:href="@{/kamar/delete/}+${kamar.noKamar}">Delete Kamar</a>-->
+    </tr>
+    </tbody>
+    </thead>
+</table>
+
+</body>
+</html>
